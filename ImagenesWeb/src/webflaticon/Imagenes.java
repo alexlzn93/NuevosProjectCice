@@ -12,12 +12,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import libreriaAlex.base.Base;
+import libreriaAlex.ficheros.Guardar;
 import libreriaAlex.net.Net;
 
 public class Imagenes {
 	public static void main(String []a) {
 		String html= Net.getHtml("https://flaticon.es"); //getHtml me descarga una url en formato texto (metodo de la clase Net)
-		String nombre= "G:\\CURSO DE JAVA\\enlaceimagenes.txt";
+		String nombre= "C:\\Users\\Alex\\Desktop\\CURSO DE JAVA\\enlaceimagenes.txt";
 		try {
 		PrintWriter archivoImagenes = new PrintWriter(new FileWriter(nombre));
 		
@@ -31,9 +32,13 @@ public class Imagenes {
 			
 		}
 		
-		getWebArchivo(String enlaceWeb, File nombreArchivo)
+		Net.getWebArchivo(html, nombre);
+		Guardar guarda = new Guardar();
+		guarda.guardarLista(ArrayList<enlaces>, nombre);
+		
 	}
 
+	//metodo para que una vez leida la url y pasada a un String me reemplaze las comillas dobles " por simples '
 	    static List<String> getEnlaces(String html,String buscar){
 		List<String> enlaces = new ArrayList<String>();
 		html= html.replaceAll("\"", "'"); //reemplaza la doble "  por esto " ' " comilla simple
@@ -43,7 +48,7 @@ public class Imagenes {
 		while(posicion !=-1) {
 			String enlace= html.substring(posicion + buscar.length()); //enlace contrendra http://imagen.gif'><p>parrafo</p>
 			enlace= enlace.substring(0,enlace.indexOf("'")); //empeiza en 0 que sera http://imagen.gif hasta q encuentre la ultima '
-			if(enlace.endsWith("png")|| (enlace.endsWith("jpg"))) {
+			if(enlace.endsWith("png")|| (enlace.endsWith("jpg"))) { //si termina endwith con png  y jpg lo añade a la List(interfaz de ArrayList)
 				
 			
 			enlaces.add(enlace);
