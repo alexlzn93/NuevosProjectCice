@@ -34,7 +34,7 @@ public class Imagenes {
 		
 		Net.getWebArchivo(html, nombre);
 		Guardar guarda = new Guardar();
-		guarda.guardarLista(ArrayList<enlaces>, nombre);
+		guarda.guardarLista(ArrayList<enlaces>, nombre); //aqui esta el fallo me falta
 		
 	}
 
